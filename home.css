@@ -69,7 +69,7 @@ h2 {
 .imgslider {
   width: 100%;
   height: 400px;
-  background-color: #1081b6;
+  background-color: #000000;
 }
 
 .navactive {
@@ -121,4 +121,15 @@ a {
 }
 a:hover{
  	color: #00b3f0;
-};
+}
+#cycler{
+    position:relative;
+}
+
+#cycler img{
+    position:absolute;z-index:1
+}
+
+#cycler img.active{
+    z-index:3
+}

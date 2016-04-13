@@ -8,6 +8,7 @@
     <meta name="viewport" content="width = device-width, initial- scle = 1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="home.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -30,17 +31,19 @@
 </div>
 
 <div class="imgslider">
-    <img src="imgslide1.png">
+    <div id="cycler">
+        <img class="active" src="img2.png" alt="My image" width="1066" height="400" />
+        <img src="imgslide1.jpg" alt="My image" width="1066" height="400" />
+        <img src="img2.png" alt="My image" width="1066" height="400" />
+        <img src="imgslide1.png" alt="My image" width="1066" height="400"/>
+    </div>
 </div>
 
 <div class="overview">
     <h3></h3>
 </div>
-<center>
-  <div class="row" style="background-color: white;
-  margin-right: 0px;
-  margin-left: 0px;
-  margin-top: 0px;">
+
+  <div class="row" style="background-color: white; margin-right: 0px; margin-left: 0px; margin-top: 0px;">
 
 
     <div class="col-xs-4">
@@ -90,7 +93,6 @@
     
   </div>
 </div>
- </center>
 
 
 <div class="footer">
@@ -103,5 +105,21 @@
 
 
 </div>
+
+<script type="text/javascript">
+    function cycleImages(){
+        var $active = $('#cycler .active');
+        var $next = ($active.next().length > 0) ? $active.next() : $('#cycler img:first');
+        $next.css('z-index',2);//move the next image up the pile
+        $active.fadeOut(1500,function(){//fade out the top image
+            $active.css('z-index',1).show().removeClass('active');//reset the z-index and unhide the image
+            $next.css('z-index',3).addClass('active');//make the next image the top one
+        });
+    }
+
+    $(document).ready(function(){
+// run every 4s
+        setInterval('cycleImages()',3000);
+    })</script>
 </body>
 </html>
